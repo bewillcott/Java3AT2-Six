@@ -7,9 +7,9 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>Java3 AT2 Six</name>
-    <description>A GUI application that allows the user to login to a remote
-        server, and then open a chat session.</description>
+    <name>Java3 AT2 Question 6</name>
+    <description>A GUI application that reads any CSV file and displays its
+        contents inside a table.</description>
 
     <properties>
         <jar.manifest.mainClass>com.bewsoftware.tafe.java3.at2.six.Main</jar.manifest.mainClass>

@@ -26,7 +26,14 @@
 
 package com.bewsoftware.tafe.java3.at2.six;
 
+import com.bewsoftware.tafe.java3.at2.six.view.RootLayoutController;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import static javafx.application.Application.launch;
@@ -41,6 +48,7 @@ import static javafx.application.Application.launch;
  */
 public class App extends Application
 {
+    private static final String TITLE = "Java3 AT2 Six";
 
     /**
      * @param args the command line arguments
@@ -50,10 +58,48 @@ public class App extends Application
         launch(args);
     }
 
-    @Override
-    public void start(Stage stage) throws Exception
+    private Stage primaryStage;
+
+    private BorderPane rootLayout;
+
+    public Stage getPrimaryStage()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return primaryStage;
+    }
+
+    /**
+     * Initializes the root layout.
+     */
+    public void initRootLayout()
+    {
+        try
+        {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("view/RootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();
+
+            RootLayoutController listener = loader.getController();
+            listener.setApp(this);
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception
+    {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle(TITLE);
+
+        initRootLayout();
     }
 
 }

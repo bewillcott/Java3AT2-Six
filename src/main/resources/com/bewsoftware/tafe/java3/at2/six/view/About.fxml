@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/*
+ *  File Name:    About.fxml
+ *  Project Name: GUIClient
+ *
+ *  Copyright (c) 2021 Bradley Willcott
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * ****************************************************************
+ * Name: Bradley Willcott
+ * ID:   M198449
+ * Date: 7 Oct 2021
+ * ****************************************************************
+ */
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" vgap="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bewsoftware.tafe.java3.at2.six.view.AboutController">
+    <columnConstraints>
+        <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="194.0" minWidth="10.0" prefWidth="80.0" />
+        <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints valignment="TOP" vgrow="NEVER" />
+        <RowConstraints valignment="TOP" vgrow="NEVER" />
+        <RowConstraints vgrow="NEVER" />
+        <RowConstraints maxHeight="165.0" minHeight="105.0" prefHeight="137.0" valignment="TOP" vgrow="NEVER" />
+        <RowConstraints vgrow="SOMETIMES" />
+        <RowConstraints valignment="TOP" vgrow="NEVER" />
+    </rowConstraints>
+    <children>
+        <Label text="Product:" />
+        <Label text="Version:" GridPane.rowIndex="1" />
+        <Label text="Build Date:" GridPane.rowIndex="2" />
+        <Label text="Description:" GridPane.rowIndex="3" />
+        <Label text="Copyright:" GridPane.rowIndex="4" />
+        <Label text="License:" GridPane.rowIndex="5" />
+        <Label fx:id="productLabel" text="The Title" GridPane.columnIndex="1" />
+        <Label fx:id="verionLabel" text="Version" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label fx:id="buildDateLabel" text="Build Date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextArea fx:id="descriptionTextArea" editable="false" focusTraversable="false" text="" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Copyright (c) 2021 Bradley Willcott" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <TextArea editable="false" focusTraversable="false" text="    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.&#10; &#10;    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&#10; &#10;    You should have received a copy of the GNU General Public License along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.&#10;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</GridPane>

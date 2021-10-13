@@ -92,12 +92,6 @@
             <classifier>mac</classifier>
         </dependency>
         <dependency>
-            <groupId>com.bewsoftware.tafe.java3.at2.four</groupId>
-            <artifactId>Common</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>

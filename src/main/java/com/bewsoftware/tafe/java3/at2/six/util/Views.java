@@ -1,6 +1,6 @@
 /*
- *  File Name:    module-info.java
- *  Project Name: Java3AT2-Six
+ *  File Name:    Views.java
+ *  Project Name: GUIClient
  * 
  *  Copyright (c) 2021 Bradley Willcott
  * 
@@ -20,28 +20,36 @@
  * ****************************************************************
  * Name: Bradley Willcott
  * ID:   M198449
- * Date: 13 Oct 2021
+ * Date: 8 Oct 2021
  * ****************************************************************
  */
 
+package com.bewsoftware.tafe.java3.at2.six.util;
+
 /**
- * Java3AT2Six module description.
+ * Views enum description.
  *
  * @author <a href="mailto:bw.opensource@yahoo.com">Bradley Willcott</a>
  *
  * @since 1.0
  * @version 1.0
  */
-module Java3AT2Six {
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires transitive javafx.graphics;
-    requires javafx.base;
-    requires java.logging;
-    requires java.desktop;
-    requires java.base;
-    requires com.opencsv;
+public enum Views
+{
+    BLANK("Blank"),
+    CSVTABLE("CSVTable");
 
-    opens com.bewsoftware.tafe.java3.at2.six to javafx.graphics;
-    opens com.bewsoftware.tafe.java3.at2.six.view to javafx.fxml, javafx.graphics;
+    public final String label;
+
+    private Views(String label)
+    {
+        this.label = label;
+    }
+
+    @Override
+    public String toString()
+    {
+        return this.label;
+    }
+
 }

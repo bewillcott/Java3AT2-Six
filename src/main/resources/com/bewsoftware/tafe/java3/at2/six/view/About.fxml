@@ -35,7 +35,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" vgap="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bewsoftware.tafe.java3.at2.six.view.AboutController">
+<GridPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" vgap="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bewsoftware.tafe.java3.at2.six.view.AboutController">
     <columnConstraints>
         <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="194.0" minWidth="10.0" prefWidth="80.0" />
         <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />

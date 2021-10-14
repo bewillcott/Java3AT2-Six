@@ -1,6 +1,6 @@
 /*
- *  File Name:    module-info.java
- *  Project Name: Java3AT2-Six
+ *  File Name:    ViewController.java
+ *  Project Name: GUIClient
  * 
  *  Copyright (c) 2021 Bradley Willcott
  * 
@@ -20,28 +20,36 @@
  * ****************************************************************
  * Name: Bradley Willcott
  * ID:   M198449
- * Date: 13 Oct 2021
+ * Date: 9 Oct 2021
  * ****************************************************************
  */
 
+package com.bewsoftware.tafe.java3.at2.six.util;
+
+import com.bewsoftware.tafe.java3.at2.six.App;
+import java.beans.PropertyChangeListener;
 /**
- * Java3AT2Six module description.
+ * ViewController interface description.
  *
  * @author <a href="mailto:bw.opensource@yahoo.com">Bradley Willcott</a>
  *
  * @since 1.0
  * @version 1.0
  */
-module Java3AT2Six {
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires transitive javafx.graphics;
-    requires javafx.base;
-    requires java.logging;
-    requires java.desktop;
-    requires java.base;
-    requires com.opencsv;
+public interface ViewController extends PropertyChangeListener
+{
 
-    opens com.bewsoftware.tafe.java3.at2.six to javafx.graphics;
-    opens com.bewsoftware.tafe.java3.at2.six.view to javafx.fxml, javafx.graphics;
+    /**
+     * Store a reference to the App instance.
+     *
+     * @param app instance to store
+     */
+    public void setApp(App app);
+
+    /**
+     * Called from {@link App#showView(com.bewsoftware.tafe.java3.at2.four.gui.Views)
+     * App.showView(view)} to allow the view controller to set one of its
+     * view's controls to have the focus.
+     */
+    public void setFocus();
 }

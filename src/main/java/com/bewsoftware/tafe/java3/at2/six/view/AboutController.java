@@ -29,6 +29,7 @@ package com.bewsoftware.tafe.java3.at2.six.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
 
 import static com.bewsoftware.tafe.java3.at2.six.util.Constants.BUILD_DATE;
 import static com.bewsoftware.tafe.java3.at2.six.util.Constants.PRODUCT_TITLE;
@@ -52,6 +53,9 @@ public class AboutController
     private Label buildDateLabel;
 
     @FXML
+    private GridPane rootPane;
+
+    @FXML
     private TextArea descriptionTextArea;
 
     @FXML
@@ -59,6 +63,16 @@ public class AboutController
 
     @FXML
     private Label verionLabel;
+
+    public double getPrefHeight()
+    {
+        return rootPane.getPrefHeight();
+    }
+
+    public double getPrefWidth()
+    {
+        return rootPane.getPrefWidth();
+    }
 
     /**
      * Instantiate a new copy of the AboutController class.

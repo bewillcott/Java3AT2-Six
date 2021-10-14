@@ -1,6 +1,6 @@
 /*
- *  File Name:    module-info.java
- *  Project Name: Java3AT2-Six
+ *  File Name:    BlankController.java
+ *  Project Name: GUIClient
  * 
  *  Copyright (c) 2021 Bradley Willcott
  * 
@@ -20,28 +20,44 @@
  * ****************************************************************
  * Name: Bradley Willcott
  * ID:   M198449
- * Date: 13 Oct 2021
+ * Date: 10 Oct 2021
  * ****************************************************************
  */
 
+package com.bewsoftware.tafe.java3.at2.six.view;
+
+import com.bewsoftware.tafe.java3.at2.six.App;
+import com.bewsoftware.tafe.java3.at2.six.util.ViewController;
+import java.beans.PropertyChangeEvent;
+
 /**
- * Java3AT2Six module description.
+ * This is a dummy controller, just to be compatible with the
+ * {@link App#showView(com.bewsoftware.tafe.java3.at2.four.gui.Views) App.setview(view)}
+ * method.
  *
  * @author <a href="mailto:bw.opensource@yahoo.com">Bradley Willcott</a>
  *
  * @since 1.0
  * @version 1.0
  */
-module Java3AT2Six {
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires transitive javafx.graphics;
-    requires javafx.base;
-    requires java.logging;
-    requires java.desktop;
-    requires java.base;
-    requires com.opencsv;
+public class BlankController implements ViewController
+{
+    @Override
+    public void setApp(App app)
+    {
+        // NoOp
+    }
 
-    opens com.bewsoftware.tafe.java3.at2.six to javafx.graphics;
-    opens com.bewsoftware.tafe.java3.at2.six.view to javafx.fxml, javafx.graphics;
+    @Override
+    public void propertyChange(PropertyChangeEvent evt)
+    {
+        // NoOp
+    }
+
+    @Override
+    public void setFocus()
+    {
+        // NoOp
+    }
+
 }

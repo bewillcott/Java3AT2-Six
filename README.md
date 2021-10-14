@@ -4,9 +4,16 @@ This is a TAFE assignment for the Diploma in Software Development,
 at the South Metropolitan TAFE, Rockingham, Western Australia.
 
 This project contains a GUI application that reads any CSV file and
-displays its contents inside a table. If the first row of the CSV data
-is the header row, then these will be used as the column labels.
+displays its contents inside a table.
 
 ## Implementation
 
-**Under Construction**
+Minimum specification for compatible CSV files:
+
+1. Delimiter is a comma: ','
+2. Quote character is the double quote: '"'
+3. First line is the column headings/field names
+
+All data is treated as plain text - no special treatment for numbers or 
+dates when columns are sorted.
+ 

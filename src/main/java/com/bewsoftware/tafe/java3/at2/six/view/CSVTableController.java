@@ -64,9 +64,9 @@ import static java.nio.file.StandardOpenOption.WRITE;
  * FXML Controller for CSVTable view.
  *
  * @implNote
- * Minimum specification for compatable CSV files:
+ * Minimum specification for compatible CSV files:
  * <ol>
- * <li>Delimitor is a comma: ','</li>
+ * <li>Delimiter is a comma: ','</li>
  * <li>Quote character is the double quote: '"'</li>
  * <li>First line is the column headings/field names</li>
  * </ol>

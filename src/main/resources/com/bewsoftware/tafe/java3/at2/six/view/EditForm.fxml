@@ -21,8 +21,8 @@
         </GridPane>
         <ButtonBar prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <buttons>
-                <Button fx:id="updateButton" mnemonicParsing="false" onAction="#handleUpdateButton" text="Update" />
-                <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButton" text="Cancel" />
+                <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="true" onAction="#handleCancelButton" text="_Cancel" />
+                <Button fx:id="updateButton" defaultButton="true"  mnemonicParsing="true" onAction="#handleUpdateButton" text="_Update" />
             </buttons>
         </ButtonBar>
     </children>

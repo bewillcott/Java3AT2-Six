@@ -67,6 +67,13 @@ public class App extends Application
 
     public static final String PROP_FILENAME = "fileName";
 
+    public static final String PROP_SAVEFILE = "saveFile";
+
+    /**
+     * Property tag for the status text.
+     */
+    public static final String PROP_STATUSTEXT = "statusText";
+
     /**
      * @param args the command line arguments
      */
@@ -84,13 +91,15 @@ public class App extends Application
 
     private Path fileName;
 
-    private String titleFileName;
-
     private Stage primaryStage;
 
     private final transient PropertyChangeSupport propertyChangeSupport;
 
     private BorderPane rootLayout;
+
+    private String statusText;
+
+    private String titleFileName;
 
     public App()
     {
@@ -107,13 +116,6 @@ public class App extends Application
     {
         propertyChangeSupport.addPropertyChangeListener(listener);
     }
-
-    private String statusText;
-
-    /**
-     * Property tag for the status text.
-     */
-    public static final String PROP_STATUSTEXT = "statusText";
 
     /**
      * Set the value of dataIsDirty
@@ -135,23 +137,6 @@ public class App extends Application
             boolean oldDataIsDirty = this.dataIsDirty;
             this.dataIsDirty = dataIsDirty;
             propertyChangeSupport.firePropertyChange(PROP_DATAISDIRTY, oldDataIsDirty, dataIsDirty);
-        }
-    }
-
-    /**
-     * Set the statusText
-     *
-     * @param statusText new value of statusText
-     */
-    public void setStatusText(String statusText)
-    {
-        String temp = statusText != null ? statusText : "";
-
-        if (!this.statusText.equals(temp))
-        {
-            String oldStatusText = this.statusText;
-            this.statusText = temp;
-            propertyChangeSupport.firePropertyChange(PROP_STATUSTEXT, oldStatusText, temp);
         }
     }
 
@@ -191,6 +176,20 @@ public class App extends Application
     public Stage getPrimaryStage()
     {
         return primaryStage;
+    }
+
+    /**
+     * Set the statusText
+     *
+     * @param statusText new value of statusText
+     */
+    public void setStatusText(String statusText)
+    {
+        String temp = statusText != null ? statusText : "";
+
+        String oldStatusText = this.statusText;
+        this.statusText = temp;
+        propertyChangeSupport.firePropertyChange(PROP_STATUSTEXT, oldStatusText, temp);
     }
 
     /**
@@ -259,6 +258,18 @@ public class App extends Application
     public void removePropertyChangeListener(PropertyChangeListener listener)
     {
         propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+
+    /**
+     * Save the data to this file.
+     *
+     * @param saveFile file name to use
+     */
+    public void saveFile(Path saveFile)
+    {
+        this.fileName = saveFile;
+        titleFileName = fileName.toFile().getName();
+        propertyChangeSupport.firePropertyChange(PROP_SAVEFILE, null, saveFile);
     }
 
     /**

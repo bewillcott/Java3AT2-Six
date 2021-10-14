@@ -30,14 +30,15 @@ import com.bewsoftware.tafe.java3.at2.six.App;
 import com.bewsoftware.tafe.java3.at2.six.util.ViewController;
 import com.bewsoftware.tafe.java3.at2.six.util.Views;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVWriter;
+import com.opencsv.CSVWriterBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
-import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
@@ -55,9 +56,23 @@ import javafx.stage.Stage;
 
 import static com.bewsoftware.tafe.java3.at2.six.util.Constants.log;
 import static com.bewsoftware.tafe.java3.at2.six.util.Views.CSVTABLE;
+import static java.nio.file.StandardOpenOption.CREATE;
+import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
+import static java.nio.file.StandardOpenOption.WRITE;
 
 /**
- * FXML Controller CSVTable view.
+ * FXML Controller for CSVTable view.
+ *
+ * @implNote
+ * Minimum specification for compatable CSV files:
+ * <ol>
+ * <li>Delimitor is a comma: ','</li>
+ * <li>Quote character is the double quote: '"'</li>
+ * <li>First line is the column headings/field names</li>
+ * </ol>
+ *
+ * All data is treated as plain text - no special treatment for
+ * numbers or dates when columns are sorted.
  *
  * @author <a href="mailto:bw.opensource@yahoo.com">Bradley Willcott</a>
  */
@@ -84,7 +99,7 @@ public class CSVTableController implements ViewController
 
         try
         {
-            loadCSVData(app.getFileName(), true);
+            loadCSVData(app.getFileName());
         } catch (IOException | CsvValidationException ex)
         {
             log(ex.toString());
@@ -107,11 +122,6 @@ public class CSVTableController implements ViewController
                 }
             }
 
-            case EditFormController.PROP_UPDATE ->
-            {
-                app.setDataIsDirty((boolean) evt.getNewValue());
-            }
-
             case App.PROP_DATAISDIRTY ->
             {
                 if ((boolean) evt.getNewValue())
@@ -119,6 +129,17 @@ public class CSVTableController implements ViewController
                     csvTableView.refresh();
                     editFormController = null;
                 }
+            }
+
+            case App.PROP_SAVEFILE ->
+            {
+                saveCSVData((Path) evt.getNewValue());
+            }
+
+            case EditFormController.PROP_UPDATE ->
+            {
+                app.setDataIsDirty((boolean) evt.getNewValue());
+                app.setStatusText("Table updated");
             }
 
             default ->
@@ -130,7 +151,7 @@ public class CSVTableController implements ViewController
     @Override
     public void setFocus()
     {
-        // TODO: Add code
+        // NoOp
     }
 
     /**
@@ -148,13 +169,9 @@ public class CSVTableController implements ViewController
 
             TableColumn<ObservableList<String>, String> col = new TableColumn<>(column);
 
-            // TODO: Work out how to let user select column cell data type
             col.setCellValueFactory((CellDataFeatures<ObservableList<String>, String> param)
                     -> new SimpleStringProperty(param.getValue().get(j)));
 
-            // TODO: Work out how to make the cells Editable
-            // This is not the full story ...
-//            col.setEditable(true);
             csvTableView.getColumns().add(col);
             i++;
         }
@@ -193,20 +210,19 @@ public class CSVTableController implements ViewController
     /**
      * Load the data from the CSV file into the lists.
      *
-     * @param csvPath    Path to the CSV file.
-     * @param headerLine Is the first line the header line?
+     * @param csvPath Path to the CSV file.
      *
      * @throws IOException            if any
      * @throws CsvValidationException if any
      */
-    private void loadCSVData(final Path csvPath, final boolean headerLine) throws IOException, CsvValidationException
+    private void loadCSVData(final Path csvPath)
+            throws IOException, CsvValidationException
     {
 
-        try (Reader reader = Files.newBufferedReader(csvPath);
-                CSVReader csvReader = new CSVReader(reader))
+        try (CSVReader csvReader = new CSVReaderBuilder(Files.newBufferedReader(csvPath)).build())
         {
             data = FXCollections.observableArrayList();
-            boolean firstline = headerLine;
+            boolean firstline = true;
             String[] line;
 
             while ((line = csvReader.readNext()) != null)
@@ -223,11 +239,31 @@ public class CSVTableController implements ViewController
                 }
             }
         }
+    }
 
-        log(Objects.requireNonNull(columns, "Failed").toString());
-        log("=".repeat(100));
+    /**
+     * Save the data to the CSV file.
+     *
+     * @param csvPath Path to the CSV file.
+     */
+    private void saveCSVData(final Path csvPath)
+    {
 
-        data.forEach((ObservableList<String> t) -> log(t.toString()));
+        try (CSVWriter csvWriter = (CSVWriter) new CSVWriterBuilder(
+                Files.newBufferedWriter(csvPath, CREATE, WRITE, TRUNCATE_EXISTING)).build())
+        {
+            String[] cols = columns.toArray(new String[columns.size()]);
+            csvWriter.writeNext(cols, false);
+
+            String[] row = new String[cols.length];
+            data.forEach(oList -> csvWriter.writeNext(oList.toArray(row), false));
+
+            app.setStatusText("Data saved to file");
+            app.setDataIsDirty(false);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(CSVTableController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -240,6 +276,8 @@ public class CSVTableController implements ViewController
     {
         try
         {
+            app.setStatusText("");
+
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class

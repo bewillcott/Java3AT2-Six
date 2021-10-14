@@ -132,6 +132,7 @@ public class RootLayoutController implements ViewController
                 {
                     case BLANK ->
                     {
+                        statusLabel.setText("");
                     }
 
                     case CSVTABLE ->
@@ -185,6 +186,7 @@ public class RootLayoutController implements ViewController
                 if (evt.getNewValue() != null)
                 {
                     app.showView(CSVTABLE);
+
                 } else
                 {
                     app.showView(BLANK);
@@ -303,7 +305,15 @@ public class RootLayoutController implements ViewController
     private void handleSaveAsMenuItem(ActionEvent event
     )
     {
-        // TODO Add code to Save As
+        final FileChooser fileChooser = new FileChooser();
+        configureFileChooser(fileChooser);
+        File fileName = fileChooser.showSaveDialog(app.getPrimaryStage());
+
+        if (fileName != null)
+        {
+            app.saveFile(fileName.toPath());
+        }
+
         event.consume();
     }
 
@@ -316,7 +326,7 @@ public class RootLayoutController implements ViewController
     private void handleSaveMenuItem(ActionEvent event
     )
     {
-        // TODO Add code to Save
+        app.saveFile(app.getFileName());
         event.consume();
     }
 

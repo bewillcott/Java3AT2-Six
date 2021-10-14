@@ -40,8 +40,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import static com.bewsoftware.tafe.java3.at2.six.util.Constants.log;
-
 /**
  * FXML Controller class
  *
@@ -154,8 +152,7 @@ public class EditFormController
     {
         this.columns = columns;
         this.rowData = rowData;
-        log("Labels: %1$s", columns);
-        log("Data: %1$s", rowData);
+
         buildForm();
 
     }
@@ -163,7 +160,6 @@ public class EditFormController
     @FXML
     private void handleCancelButton(ActionEvent event)
     {
-        log("Cancel button pressed: %1$s", event.toString());
         ((Stage) cancelButton.getScene().getWindow()).close();
         setUpdate(false);
         event.consume();
@@ -172,18 +168,9 @@ public class EditFormController
     @FXML
     private void handleUpdateButton(ActionEvent event)
     {
-        log("Update button pressed: %1$s", event.toString());
         ((Stage) cancelButton.getScene().getWindow()).close();
         updateRow();
         event.consume();
-    }
-
-    /**
-     * Initializes the controller class.
-     */
-    private void initialize()
-    {
-        // TODO
     }
 
     private void updateRow()
@@ -199,7 +186,6 @@ public class EditFormController
             }
         }
 
-        log("%1$s", rowData);
         setUpdate(changed);
     }
 

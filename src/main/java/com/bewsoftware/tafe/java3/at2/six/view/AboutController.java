@@ -53,26 +53,16 @@ public class AboutController
     private Label buildDateLabel;
 
     @FXML
-    private GridPane rootPane;
-
-    @FXML
     private TextArea descriptionTextArea;
 
     @FXML
     private Label productLabel;
 
     @FXML
+    private GridPane rootPane;
+
+    @FXML
     private Label verionLabel;
-
-    public double getPrefHeight()
-    {
-        return rootPane.getPrefHeight();
-    }
-
-    public double getPrefWidth()
-    {
-        return rootPane.getPrefWidth();
-    }
 
     /**
      * Instantiate a new copy of the AboutController class.

@@ -216,8 +216,7 @@ public class RootLayoutController implements ViewController
      * @param event
      */
     @FXML
-    private void handleAboutMenuItem(ActionEvent event
-    )
+    private void handleAboutMenuItem(ActionEvent event)
     {
         showAboutDialog();
         event.consume();
@@ -229,8 +228,7 @@ public class RootLayoutController implements ViewController
      * @param event
      */
     @FXML
-    private void handleCloseMenuItem(ActionEvent event
-    )
+    private void handleCloseMenuItem(ActionEvent event)
     {
         if (app.isDataDirty())
         {
@@ -262,8 +260,7 @@ public class RootLayoutController implements ViewController
      * @param event
      */
     @FXML
-    private void handleExitMenuItem(ActionEvent event
-    )
+    private void handleExitMenuItem(ActionEvent event)
     {
         app.getPrimaryStage().fireEvent(
                 new WindowEvent(
@@ -281,8 +278,7 @@ public class RootLayoutController implements ViewController
      * @param event
      */
     @FXML
-    private void handleOpenMenuItem(ActionEvent event
-    )
+    private void handleOpenMenuItem(ActionEvent event)
     {
         final FileChooser fileChooser = new FileChooser();
         configureFileChooser(fileChooser);
@@ -302,8 +298,7 @@ public class RootLayoutController implements ViewController
      * @param event
      */
     @FXML
-    private void handleSaveAsMenuItem(ActionEvent event
-    )
+    private void handleSaveAsMenuItem(ActionEvent event)
     {
         final FileChooser fileChooser = new FileChooser();
         configureFileChooser(fileChooser);
@@ -323,8 +318,7 @@ public class RootLayoutController implements ViewController
      * @param event
      */
     @FXML
-    private void handleSaveMenuItem(ActionEvent event
-    )
+    private void handleSaveMenuItem(ActionEvent event)
     {
         app.saveFile(app.getFileName());
         event.consume();
